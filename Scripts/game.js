@@ -6,6 +6,20 @@ var game = (function () {
     var stage;
     var currentSceneState;
     var currentScene;
+    var assets;
+    var assetManifest = [{ id: "startButton", src: "./Assets/images/startButton.png" },
+        { id: "placeholder", src: "./Assets/images/placeholder.png" },
+        { id: "nextButton", src: "./Assets/images/nextButton.png" },
+        { id: "backtButton", src: "./Assets/images/backButton.png" },
+        { id: "plane", src: "./Assets/images/plane.png" },
+        { id: "ocean", src: "./Assets/images/ocean.gif" }];
+    function Preload() {
+        assets = new createjs.LoadQueue();
+        config.Game.ASSETS = assets; //create a global reference
+        assets.installPlugin(createjs.Sound);
+        assets.loadManifest(assetManifest);
+        assets.on("complete", Start);
+    }
     /**
      * Perform Initialization in the Start function
      *
@@ -58,6 +72,6 @@ var game = (function () {
         stage.addChild(currentScene);
         currentSceneState = config.Game.SCENE_STATE;
     }
-    window.addEventListener("load", Start);
+    window.addEventListener("load", Preload);
 })();
 //# sourceMappingURL=game.js.map

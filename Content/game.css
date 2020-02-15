@@ -1,6 +1,14 @@
 #canvas
 {
     border: 1px dotted black;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: white;
+    border: dotted 1px;
+}
+
+#mainContent 
+{
+    text-align: center;
+    width: 640px;
+    margin: 0 auto;
 }

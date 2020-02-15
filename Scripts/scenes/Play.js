@@ -21,25 +21,28 @@ var scenes;
         function Play() {
             var _this = _super.call(this) || this;
             // initialization
-            _this.playLabel = new objects.Label();
-            _this.nextButton = new objects.Button();
+            _this._ocean = new objects.Ocean();
+            _this._plane = new objects.Plane();
             _this.Start();
             return _this;
         }
         // PUBLIC METHODS
         Play.prototype.Start = function () {
-            this.playLabel = new objects.Label("Place Scene", "80px", "Consolas", "#000000", 320, 200, true);
-            this.nextButton = new objects.Button("./Assets/images/nextButton.png", 320, 400, true);
+            this._ocean = new objects.Ocean();
+            this._plane = new objects.Plane();
+            this._plane.position.y = 430;
             this.Main();
         };
         Play.prototype.Update = function () {
+            this._ocean.Update();
+            this._plane.Update();
         };
         Play.prototype.Main = function () {
-            this.addChild(this.playLabel);
-            this.addChild(this.nextButton);
-            this.nextButton.on("click", function () {
-                config.Game.SCENE_STATE = scenes.State.END;
-            });
+            this.addChild(this._ocean);
+            this.addChild(this._plane);
+            // this.nextButton.on("click", function() {
+            //    config.Game.SCENE_STATE = scenes.State.END;
+            // });
         };
         return Play;
     }(objects.Scene));
